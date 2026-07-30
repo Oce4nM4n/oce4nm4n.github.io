@@ -1,0 +1,37 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+export interface Props {
+  entry: CollectionEntry<'projects'>;
+}
+
+const { entry } = Astro.props;
+const { title, description, technologies, status } = entry.data;
+---
+
+<a
+  href={`/projects/${entry.slug}/`}
+  class="group block rounded-xl border border-border bg-white p-6 transition-base hover:-translate-y-0.5 hover:border-accent hover:shadow-lg"
+>
+  <div class="mb-1 flex items-center gap-2">
+    <span class="text-xs font-medium uppercase tracking-wider text-text-secondary">{status}</span>
+    <span
+      class="h-1.5 w-1.5 rounded-full"
+      class:list={{
+        'bg-emerald-500': status === 'active',
+        'bg-slate-400': status === 'archived',
+        'bg-amber-500': status === 'planned',
+      }}></span>
+  </div>
+  <h3 class="mb-2 text-xl font-semibold group-hover:text-accent">{title}</h3>
+  <p class="mb-4 text-sm leading-relaxed text-text-secondary">{description}</p>
+  <div class="flex flex-wrap gap-1.5">
+    {
+      technologies.map((tech) => (
+        <span class="rounded-md bg-bg-secondary px-2 py-0.5 text-xs font-mono text-text-secondary">
+          {tech}
+        </span>
+      ))
+    }
+  </div>
+</a>

@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import TagBadge from '../../components/TagBadge.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const sortedPosts = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const tagCounts = new Map<string, number>();
+for (const post of allPosts) {
+  for (const tag of post.data.tags) {
+    tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+  }
+}
+---
+
+<BaseLayout title="Blog — My Website" description="Technical articles and tutorials">
+  <div class="container-wide py-16">
+    <header class="mb-12">
+      <h1 class="mb-4 text-4xl font-bold">Blog</h1>
+      <p class="text-lg text-text-secondary">
+        Thoughts, tutorials, and deep dives into topics I care about.
+      </p>
+    </header>
+
+    <div class="mb-10 flex flex-wrap gap-2">
+      {
+        Array.from(tagCounts.entries())
+          .sort((a, b) => b[1] - a[1])
+          .map(([tag, count]) => <TagBadge tag={tag} count={count} />)
+      }
+    </div>
+
+    <div class="grid gap-6 sm:grid-cols-2">
+      {sortedPosts.map((post) => <BlogCard entry={post} />)}
+    </div>
+
+    {
+      sortedPosts.length === 0 && (
+        <p class="py-12 text-center text-text-secondary">No articles yet. Check back soon!</p>
+      )
+    }
+  </div>
+</BaseLayout>

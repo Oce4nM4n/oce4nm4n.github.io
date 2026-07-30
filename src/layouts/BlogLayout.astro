@@ -1,0 +1,60 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import type { CollectionEntry } from 'astro:content';
+
+export interface Props {
+  entry: CollectionEntry<'blog'>;
+}
+
+const { entry } = Astro.props;
+const { title, description, date, tags, theme } = entry.data;
+const wordCount = entry.body ? entry.body.split(/\s+/).filter(Boolean).length : 0;
+const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+---
+
+<BaseLayout title={title} description={description}>
+  <article class="container-narrow py-16">
+    <header class="mb-12">
+      <div class="mb-4 flex flex-wrap gap-2">
+        {
+          tags.map((tag) => (
+            <a
+              href={`/tags/${tag}/`}
+              class="rounded-full bg-bg-secondary px-3 py-1 text-sm text-text-secondary transition-base hover:text-accent"
+            >
+              #{tag}
+            </a>
+          ))
+        }
+      </div>
+      <h1 class="mb-4 text-4xl font-bold">{title}</h1>
+      <p class="text-lg text-text-secondary">{description}</p>
+      <div class="mt-4 flex items-center gap-4 text-sm text-text-secondary">
+        <time datetime={date.toISOString()}>
+          {date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </time>
+        <span class="flex items-center gap-1">
+          <svg
+            class="h-3.5 w-3.5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            ><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"
+            ></polyline></svg
+          >
+          {readingTime} min read
+        </span>
+      </div>
+      <div class="mt-4 flex items-center gap-2">
+        <span
+          class="inline-block h-2 w-2 rounded-full"
+          style={{ backgroundColor: `var(--theme-${theme})` }}></span>
+        <span class="text-sm text-text-secondary capitalize">{theme}</span>
+      </div>
+    </header>
+    <div class="prose-custom">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>

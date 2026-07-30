@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const allProjects = await getCollection('projects');
+const activeProjects = allProjects.filter((p) => p.data.status === 'active');
+const archivedProjects = allProjects.filter((p) => p.data.status === 'archived');
+const plannedProjects = allProjects.filter((p) => p.data.status === 'planned');
+---
+
+<BaseLayout title="Projects — My Website" description="My software projects and portfolio">
+  <div class="container-wide py-16">
+    <header class="mb-12">
+      <h1 class="mb-4 text-4xl font-bold">Projects</h1>
+      <p class="text-lg text-text-secondary">Things I've built, am building, or plan to build.</p>
+    </header>
+
+    {
+      activeProjects.length > 0 && (
+        <section class="mb-12">
+          <h2 class="mb-6 text-xl font-semibold">Active</h2>
+          <div class="grid gap-6 sm:grid-cols-2">
+            {activeProjects.map((project) => (
+              <ProjectCard entry={project} />
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    {
+      archivedProjects.length > 0 && (
+        <section class="mb-12">
+          <h2 class="mb-6 text-xl font-semibold text-text-secondary">Archived</h2>
+          <div class="grid gap-6 sm:grid-cols-2">
+            {archivedProjects.map((project) => (
+              <ProjectCard entry={project} />
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    {
+      plannedProjects.length > 0 && (
+        <section class="mb-12">
+          <h2 class="mb-6 text-xl font-semibold text-text-secondary">Planned</h2>
+          <div class="grid gap-6 sm:grid-cols-2">
+            {plannedProjects.map((project) => (
+              <ProjectCard entry={project} />
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    {
+      allProjects.length === 0 && (
+        <p class="py-12 text-center text-text-secondary">No projects yet. Stay tuned!</p>
+      )
+    }
+  </div>
+</BaseLayout>

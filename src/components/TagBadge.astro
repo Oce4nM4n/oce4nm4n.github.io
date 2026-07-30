@@ -1,0 +1,21 @@
+---
+export interface Props {
+  tag: string;
+  count?: number;
+  size?: 'sm' | 'md';
+}
+
+const { tag, count, size = 'md' } = Astro.props;
+---
+
+<a
+  href={`/tags/${tag}/`}
+  class="inline-flex items-center gap-1 rounded-full bg-bg-secondary transition-base hover:bg-accent hover:text-white"
+  class:list={{
+    'px-2.5 py-1 text-xs': size === 'sm',
+    'px-3 py-1.5 text-sm': size === 'md',
+  }}
+>
+  <span>#{tag}</span>
+  {count !== undefined && <span class="text-text-secondary">({count})</span>}
+</a>

@@ -1,0 +1,21 @@
+// See https://containers.dev/implementors/json_reference/ for configuration reference
+{
+	"name": "myWebsite",
+	"build": {
+		"dockerfile": "Dockerfile"
+	}, //alternatively "image":"mcr.microsoft.com/devcontainers/typescript-node"
+"remoteUser": "node",
+"features": {
+	"ghcr.io/devcontainers/features/common-utils:2": {
+		"configureZshAsDefaultShell": true
+	},
+	"ghcr.io/devcontainers/features/git:1": {},
+	"ghcr.io/devcontainers/features/github-cli:1": {},
+	"ghcr.io/wxw-matt/devcontainer-features/command_runner:0": {},
+	"ghcr.io/stu-bell/devcontainer-features/open-code:0": {}
+},
+
+"forwardPorts": [
+        4321
+    ]
+}

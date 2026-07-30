@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.astro/
+.devcontainer/
+.github/
+.DS_Store
+plan.md
+plan2.md

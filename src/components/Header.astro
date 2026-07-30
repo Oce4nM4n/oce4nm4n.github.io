@@ -1,0 +1,30 @@
+---
+const navItems = [
+  { href: '/', label: 'Home' },
+  { href: '/blog/', label: 'Blog' },
+  { href: '/projects/', label: 'Projects' },
+  { href: '/about/', label: 'About' },
+];
+---
+
+<header class="border-b border-border bg-white/80 backdrop-blur-sm dark:bg-slate-900/80">
+  <nav class="container-wide flex h-16 items-center justify-between">
+    <a href="/" class="text-xl font-bold tracking-tight transition-base hover:text-accent">
+      My Website
+    </a>
+    <ul class="flex items-center gap-8">
+      {
+        navItems.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class="text-sm font-medium text-text-secondary transition-base hover:text-accent"
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>

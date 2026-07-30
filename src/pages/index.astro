@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BlogCard from '../components/BlogCard.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const blogPosts = await getCollection('blog', ({ data }) => !data.draft);
+const projects = await getCollection('projects');
+
+const featuredProjects = projects.filter((p) => p.data.featured);
+const latestPosts = blogPosts
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+---
+
+<BaseLayout title="My Website — Home" description="Personal website and technical blog">
+  <section class="container-narrow py-24">
+    <h1 class="mb-4 text-5xl font-bold tracking-tight">
+      Hi, I'm <span class="text-accent">Your Name</span>
+    </h1>
+    <p class="max-w-2xl text-lg leading-relaxed text-text-secondary">
+      I write about AI, physics, mathematics, and software engineering. This is my personal corner
+      of the internet where I share what I'm building and learning.
+    </p>
+  </section>
+
+  {
+    featuredProjects.length > 0 && (
+      <section class="container-wide py-16">
+        <div class="mb-8 flex items-center justify-between">
+          <h2 class="text-2xl font-bold">Featured Projects</h2>
+          <a href="/projects/" class="text-sm text-accent transition-base hover:text-accent-dark">
+            View all &rarr;
+          </a>
+        </div>
+        <div class="grid gap-6 sm:grid-cols-2">
+          {featuredProjects.map((project) => (
+            <ProjectCard entry={project} />
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <section class="container-wide py-16">
+    <div class="mb-8 flex items-center justify-between">
+      <h2 class="text-2xl font-bold">Latest Articles</h2>
+      <a href="/blog/" class="text-sm text-accent transition-base hover:text-accent-dark">
+        View all &rarr;
+      </a>
+    </div>
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {latestPosts.map((post) => <BlogCard entry={post} />)}
+    </div>
+  </section>
+</BaseLayout>
