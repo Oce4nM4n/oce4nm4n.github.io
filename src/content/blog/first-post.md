@@ -8,7 +8,7 @@ tags:
   - Local AI
 category: AI
 theme: ai
-draft: false
+draft: true
 ---
 
 ## Why Local AI?

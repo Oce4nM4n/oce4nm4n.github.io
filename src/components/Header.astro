@@ -8,23 +8,21 @@ const navItems = [
 ---
 
 <header class="border-b border-border bg-white/80 backdrop-blur-sm dark:bg-slate-900/80">
-  <nav class="container-wide flex h-16 items-center justify-between">
-    <a href="/" class="text-xl font-bold tracking-tight transition-base hover:text-accent">
-      My Website
-    </a>
-    <ul class="flex items-center gap-8">
+  <nav class="container-wide flex h-16 items-center">
+    <ul class="flex w-full justify-evenly">
       {
         navItems.map((item) => (
-          <li>
+          <li class="flex-1">
             <a
               href={item.href}
-              class="text-sm font-medium text-text-secondary transition-base hover:text-accent"
+              class="text-sm font-medium text-text-secondary transition-base hover:text-accent rounded-sm px-10 py-4  hover:bg-slate-100 flex items-center justify-center"
             >
               {item.label}
             </a>
           </li>
         ))
       }
+
     </ul>
   </nav>
 </header>

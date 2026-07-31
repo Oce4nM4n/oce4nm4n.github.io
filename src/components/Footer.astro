@@ -1,11 +1,19 @@
-<footer class="border-t border-border">
+---
+export interface Props {
+  date?: string;
+}
+
+const {date} = Astro.props;
+---
+
+<footer>
   <div class="container-wide flex h-20 items-center justify-between">
     <p class="text-sm text-text-secondary">
-      &copy; {new Date().getFullYear()} My Website. All rights reserved.
+      {date || ""}
     </p>
     <div class="flex items-center gap-6">
       <a
-        href="https://github.com/username"
+        href="https://github.com/Oce4nM4n"
         target="_blank"
         rel="noopener noreferrer"
         class="text-text-secondary transition-base hover:text-accent"
@@ -18,26 +26,13 @@
         >
       </a>
       <a
-        href="mailto:hello@example.com"
+        href="mailto:ayushmansihag@gmail.com"
         class="text-text-secondary transition-base hover:text-accent"
         aria-label="Email"
       >
         <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
           ><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
           ></path><polyline points="22,6 12,13 2,6"></polyline></svg
-        >
-      </a>
-      <a
-        href="/rss.xml"
-        class="text-text-secondary transition-base hover:text-accent"
-        aria-label="RSS Feed"
-      >
-        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"
-          ><path d="M19 20.001C19 11.729 12.271 5 4 5v2c7.168 0 13 5.832 13 13.001h2z"></path><path
-            d="M12 20.001C12 14.486 7.514 10 2 10v2c4.411 0 8 3.589 8 8.001h2z"></path><circle
-            cx="4"
-            cy="20"
-            r="2"></circle></svg
         >
       </a>
     </div>

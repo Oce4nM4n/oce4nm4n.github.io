@@ -22,7 +22,38 @@ tags:
   - tag1
   - tag2
 category: Category
+theme: ai
 draft: false
+---
+```
+
+### Fields
+
+| Field       | Required | Description                                      |
+| ----------- | -------- | ------------------------------------------------ |
+| `title`     | Yes      | Post title                                       |
+| `description` | Yes    | Short summary for cards and SEO                   |
+| `date`      | Yes      | Publication date                                  |
+| `tags`      | Yes      | Array of tag strings                             |
+| `category`  | No       | Single category name                             |
+| `theme`     | No       | One of: `ai`, `physics`, `math`, `programming`, `general` (defaults to `general`) |
+| `draft`     | No       | Set `true` to exclude from production builds     |
+| `image`     | No       | Path to a hero image                             |
+
+### Projects
+
+Projects follow a similar structure in `src/content/projects/`:
+
+```yaml
+---
+title: 'Project Name'
+description: 'Brief description'
+github: 'https://github.com/username/repo'
+technologies:
+  - Python
+  - FastAPI
+status: active
+featured: true
 ---
 ```
 

@@ -8,15 +8,15 @@ GitHub Actions handles all deployments automatically.
 
 Runs on every push and pull request:
 
-- Format check
-- Astro type check
-- Build
+- Format check (`prettier --check`)
+- Astro type check (`astro check`)
+- Build (includes Pagefind indexing)
 
 ### Deploy (`deploy.yml`)
 
 Runs on push to `main`:
 
-- Build
+- Build (includes Pagefind indexing)
 - Upload to GitHub Pages
 - Deploy
 
@@ -24,12 +24,14 @@ Runs on push to `main`:
 
 Runs weekly:
 
-- `npm audit`
+- `npm audit --audit-level=high`
 
 ## Manual Deployment
 
 ```bash
 npm run build
 ```
+
+This runs `astro build` followed by `pagefind --site dist` for search indexing.
 
 Output is in `dist/`.
