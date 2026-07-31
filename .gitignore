@@ -5,3 +5,6 @@ dist/
 .DS_Store
 opencode.json
 .vscode/
+.astro/dev.log
+.astro/dev.json
+.astro/data-store.json
