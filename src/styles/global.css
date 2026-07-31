@@ -148,6 +148,24 @@ body {
   border-color: var(--color-border);
 }
 
+/*
+Source - https://stackoverflow.com/a/38994837
+Posted by Hristo Eftimov, modified by community. See post 'Timeline' for change history
+Retrieved 2026-07-31, License - CC BY-SA 4.0
+*/
+
+#html {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox, Safari 18.2+, Chromium 121+ */
+}
+#html::-webkit-scrollbar {
+    display: none;  /* Older Safari and Chromium */
+}
+
+/*
+End of sourced quote.
+*/
+
 @utility text-accent {
   color: var(--color-accent);
 }
@@ -173,3 +191,4 @@ body {
   transition-duration: 200ms;
   transition-timing-function: ease-in-out;
 }
+
