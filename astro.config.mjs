@@ -6,8 +6,7 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 
 export default defineConfig({
-  site: 'https://username.github.io',
-  base: '/',
+  site: 'https://oce4nm4n.github.io',
   trailingSlash: 'always',
   integrations: [expressiveCode()],
   vite: {
