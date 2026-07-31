@@ -8,3 +8,4 @@ opencode.json
 .astro/dev.log
 .astro/dev.json
 .astro/data-store.json
+src/content/drafts/
