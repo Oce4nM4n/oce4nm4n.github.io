@@ -23,7 +23,7 @@
     "remark-math": "^6.0.0"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.10",
+    "@astrojs/check": "^0.9.11",
     "@tailwindcss/vite": "^4.3.3",
     "autoprefixer": "^10.5.4",
     "postcss": "^8.5.25",
